@@ -1,12 +1,73 @@
+/* ============================================================
+   Invoice — print + screen styles.
+   The .page block is paper-like and shared with the PDF view
+   (pdf.php does NOT load brand.css and overrides body to white).
+   Screen-only chrome (body bg, toolbar, share-box) uses brand
+   tokens loaded via /css/brand.css in print.php.
+   ============================================================ */
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 13px; color: #0f172a; line-height: 1.5; background: #f8fafc; }
-.toolbar { background: white; border-bottom: 1px solid #e2e8f0; padding: 12px 24px; display: flex; gap: 8px; justify-content: flex-end; align-items: center; }
-.toolbar .muted { margin-right: auto; font-size: 13px; color: #64748b; }
-.btn { background: #2563eb; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 14px; text-decoration: none; display: inline-block; font-family: inherit; }
-.btn.secondary { background: white; color: #0f172a; border: 1px solid #e2e8f0; }
-.share-box { display: flex; gap: 12px; align-items: center; padding: 10px 14px; background: white; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 13px; }
-.share-box input { flex: 1; border: 0; background: transparent; font-family: 'JetBrains Mono', Menlo, monospace; font-size: 12px; outline: none; color: #0f172a; }
-.page { max-width: 820px; margin: 24px auto; background: white; padding: 48px 56px; border: 1px solid #e2e8f0; }
+
+/* Default (PDF) body — pdf.php further forces white !important. */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 13px; color: #0f172a; line-height: 1.5; background: #f8fafc;
+}
+
+/* Screen-only: dark gradient backdrop, matching admin shell. */
+body.invoice-screen {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: var(--text, #e2e8f0);
+    background:
+        radial-gradient(ellipse 1000px 500px at 20% -10%, rgba(56,189,248,0.10), transparent 50%),
+        radial-gradient(ellipse 900px 500px at 80% -10%,  rgba(129,140,248,0.08), transparent 55%),
+        var(--bg, #0a0e1a);
+    min-height: 100vh;
+    padding-bottom: 48px;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* === Toolbar (screen only) === */
+.toolbar {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(10,14,26,0.85);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border, #1f2a44);
+    padding: 12px 24px;
+    display: flex; gap: 8px; justify-content: flex-end; align-items: center;
+}
+.toolbar .muted { margin-right: auto; font-size: 13px; color: var(--muted, #94a3b8); }
+
+/* === Share box (screen only) === */
+.share-box {
+    display: flex; gap: 12px; align-items: center;
+    padding: 10px 14px;
+    background: rgba(56,189,248,0.08);
+    border: 1px solid rgba(56,189,248,0.30);
+    border-radius: 8px;
+    font-size: 13px; color: var(--text, #e2e8f0);
+}
+.share-box strong { color: var(--accent, #38bdf8); }
+.share-box input {
+    flex: 1; border: 0; background: transparent;
+    font-family: 'JetBrains Mono', Menlo, monospace;
+    font-size: 12px; outline: none; color: var(--text, #e2e8f0);
+    padding: 0;
+}
+
+/* === Invoice document — kept paper-like, identical to PDF === */
+.page {
+    max-width: 820px; margin: 24px auto; background: white;
+    padding: 48px 56px; border: 1px solid #e2e8f0; color: #0f172a;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+body.invoice-screen .page {
+    border: 0;
+    border-radius: 4px;
+    box-shadow: 0 24px 60px -20px rgba(0,0,0,0.55), 0 8px 24px -8px rgba(0,0,0,0.4);
+    margin: 32px auto;
+}
 .header-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 32px; gap: 32px; }
 .company { font-size: 12px; color: #334155; line-height: 1.55; flex: 1; }
 .company .name { font-weight: 700; font-size: 18px; color: #0f172a; margin-bottom: 4px; }
@@ -55,8 +116,12 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
 .signature .marks .sig   { bottom: 22px; max-height: 70px;  max-width: 240px; }
 .signature .marks .stamp { bottom: 6px;  max-height: 100px; max-width: 200px; opacity: 0.85; }
 .signature .line { border-top: 1px solid #94a3b8; padding-top: 6px; }
+
 @media print {
-    body { background: white; }
+    body, body.invoice-screen { background: white !important; color: #0f172a; }
     .toolbar, .share-box { display: none; }
-    .page { margin: 0; padding: 32px 40px; border: none; max-width: none; }
+    .page, body.invoice-screen .page {
+        margin: 0; padding: 32px 40px; border: none;
+        max-width: none; box-shadow: none; border-radius: 0;
+    }
 }

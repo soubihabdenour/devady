@@ -84,7 +84,7 @@ $icon = function(string $n): string {
 <link rel="icon" type="image/svg+xml" href="<?= Brand::faviconDataUri() ?>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Cairo:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Cairo:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&display=swap">
 <link rel="stylesheet" href="/css/brand.css">
 <link rel="stylesheet" href="/css/landing.css">
 </head>
@@ -364,7 +364,6 @@ $icon = function(string $n): string {
     <div class="footer-bottom">
         <div>
             &copy; <?= date('Y') ?> <?= e($brand) ?>.
-            <?= e(t('footer_legal')) ?><?= $anaeNo ? ' &middot; ' . e($anaeNo) : '' ?>.
         </div>
         <a class="admin" href="<?= $authed ? '/admin' : '/login' ?>">&rarr; admin</a>
     </div>

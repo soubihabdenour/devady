@@ -16,12 +16,17 @@ $shareToken = $invoice['public_token'] ?? null;
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Invoice <?= e($invoice['number']) ?></title>
+<meta name="theme-color" content="<?= Brand::DARK['bg'] ?>">
 <link rel="icon" type="image/svg+xml" href="<?= Brand::faviconDataUri() ?>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="/css/brand.css">
 <style>
 <?php include __DIR__ . '/print.css.php'; ?>
 </style>
 </head>
-<body>
+<body class="invoice-screen">
 
 <?php if (!$public): ?>
 <div class="toolbar">
@@ -36,7 +41,7 @@ $shareToken = $invoice['public_token'] ?? null;
         </form>
     <?php else: ?>
         <form method="post" action="/admin/invoices/<?= (int)$invoice['id'] ?>/sign" style="display:inline;">
-            <button type="submit" class="btn">Sign invoice</button>
+            <button type="submit" class="btn primary">Sign invoice</button>
         </form>
     <?php endif; ?>
     <?php if ($shareToken): ?>
@@ -48,8 +53,8 @@ $shareToken = $invoice['public_token'] ?? null;
             <button type="submit" class="btn secondary">Public link</button>
         </form>
     <?php endif; ?>
-    <a href="/admin/invoices/<?= (int)$invoice['id'] ?>/pdf" class="btn">PDF</a>
-    <button onclick="window.print()" class="btn">Print</button>
+    <a href="/admin/invoices/<?= (int)$invoice['id'] ?>/pdf" class="btn primary">PDF</a>
+    <button onclick="window.print()" class="btn primary">Print</button>
 </div>
 
 <?php if ($shareToken): ?>

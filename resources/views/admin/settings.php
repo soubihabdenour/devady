@@ -187,7 +187,7 @@ ob_start();
         ctx.lineCap = 'round';
         ctx.lineJoin = 'round';
         ctx.lineWidth = 2.2;
-        ctx.strokeStyle = '#0a0e1a';
+        ctx.strokeStyle = '#0a0e1d';
     }
     fit();
     window.addEventListener('resize', fit);

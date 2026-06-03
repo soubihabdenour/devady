@@ -15,7 +15,8 @@ $dir   = I18n::dir();
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title><?= e(t('login_title')) ?> &mdash; <?= e($brand) ?></title>
 <link rel="icon" type="image/svg+xml" href="<?= Brand::faviconDataUri() ?>">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Cairo:wght@400;500;600;700;800&display=swap">
+<meta name="theme-color" content="<?= Brand::DARK['bg'] ?>">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Cairo:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="/css/brand.css">
 <link rel="stylesheet" href="/css/admin.css">
 </head>

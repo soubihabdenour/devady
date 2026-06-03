@@ -84,7 +84,7 @@ $icon = function(string $n): string {
 <link rel="icon" type="image/svg+xml" href="<?= Brand::faviconDataUri() ?>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Cairo:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Cairo:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="/css/brand.css">
 <link rel="stylesheet" href="/css/landing.css">
 </head>
@@ -119,6 +119,7 @@ $icon = function(string $n): string {
 </nav>
 
 <header class="hero" id="top">
+    <img class="hero-art" src="/img/night-coding.gif" alt="<?= e(t('hero_art_alt')) ?>" width="320" height="180" loading="eager" decoding="async">
     <div class="eyebrow"><span class="dot"></span> <?= e(t('hero_eyebrow')) ?></div>
     <h1><?= e(t('hero_title_prefix')) ?> <span class="grad"><?= e(t('hero_title_grad')) ?></span> <?= e(t('hero_title_suffix')) ?></h1>
     <p class="sub"><?= e(t('hero_sub', ['brand' => $brand])) ?></p>
@@ -238,19 +239,6 @@ $icon = function(string $n): string {
             <p><?= e(t('about_p2', ['activity' => mb_strtolower($activity)])) ?></p>
             <p><?= e(t('about_p3')) ?></p>
             <a href="#contact" class="btn primary" style="margin-top: 12px;"><?= e(t('about_cta')) ?> <?= $icon('arrow') ?></a>
-        </div>
-        <div class="id-card">
-            <div class="row-line"><span class="k"><?= e(t('idcard_founder')) ?></span><span class="v accent"><?= e($founder ?: t('idcard_engineer')) ?></span></div>
-            <div class="row-line"><span class="k"><?= e(t('idcard_practice')) ?></span><span class="v"><?= e($brand) ?></span></div>
-            <div class="row-line"><span class="k"><?= e(t('idcard_activity')) ?></span><span class="v"><?= e($activity) ?></span></div>
-            <div class="sep"></div>
-            <div class="row-line"><span class="k"><?= e(t('idcard_status')) ?></span><span class="v"><?= e(t('idcard_status_v')) ?></span></div>
-            <?php if ($anaeNo): ?>
-                <div class="row-line"><span class="k"><?= e(t('idcard_anae')) ?></span><span class="v ltr-force"><?= e($anaeNo) ?></span></div>
-            <?php endif; ?>
-            <div class="row-line"><span class="k"><?= e(t('idcard_timezone')) ?></span><span class="v ltr-force">UTC+1</span></div>
-            <div class="sep"></div>
-            <div class="row-line"><span class="k"><?= e(t('idcard_available')) ?></span><span class="v" style="color: var(--accent-3);">true</span></div>
         </div>
     </div>
 </section>

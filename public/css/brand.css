@@ -4,37 +4,50 @@
    ============================================================ */
 
 :root {
-    --bg:       #0a0e1a;
-    --bg-2:     #0f1424;
-    --surface:  #131a2b;
-    --surface-2:#1a2238;
-    --border:   #1f2a44;
-    --border-2: #2a3656;
-    --text:     #e2e8f0;
-    --text-dim: #cbd5e1;
-    --muted:    #94a3b8;
-    --accent:   #38bdf8;
-    --accent-2: #818cf8;
-    --accent-3: #4ade80;
-    --danger:   #f87171;
-    --warn:     #f59e0b;
+    /* Midnight Studio palette — shared by landing, admin, and the
+       invoice screen chrome. The printable invoice .page is the
+       only deliberate exception (see invoice/print.css.php). */
+    --bg:        #0a0e1d;
+    --bg-2:      #11162a;
+    --surface:   #181e35;
+    --surface-2: #212842;
+    --border:    #252d48;
+    --border-2:  #2e3754;
+    --hairline:  rgba(255,255,255,0.07);
+    --hairline-2:rgba(255,255,255,0.13);
+    --shadow-px: rgba(4,7,16,0.60);
+    --text:      #f1f3f8;
+    --text-dim:  #cdd3e0;
+    --muted:     #7d869f;
+    --accent:    #818cf8;   /* indigo-400 — primary */
+    --accent-hi: #a5adff;   /* lighter indigo, hovers */
+    --accent-2:  #fbbf77;   /* warm amber, sparingly */
+    --accent-3:  #34d399;   /* emerald, success/availability */
+    --danger:    #fb7185;   /* rose-400 */
+    --warn:      #f59e0b;
 
     --mono:    'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
     --sans:    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     --sans-ar: 'Cairo', 'Inter', -apple-system, sans-serif;
+    --font-display: 'Space Grotesk', 'Inter', -apple-system, sans-serif;
 
     --radius:    10px;
-    --radius-lg: 18px;
-    --radius-xl: 24px;
-    --shadow-glow: 0 0 60px rgba(56,189,248,0.12);
-    --hairline: rgba(255,255,255,0.08);
+    --radius-lg: 14px;
+    --radius-xl: 18px;
 
-    /* Landing-page editorial accent (Fraunces + brighter blue).
-       Layered drop shadow + inset top-highlight give cards a glass-pane edge. */
-    --accent-bright: #4f8cff;
-    --shadow-card:    0 1px 2px rgba(0,0,0,.4), 0 4px 16px rgba(0,0,0,.25);
-    --shadow-inset:   inset 0 1px 0 rgba(255,255,255,.04);
-    --font-display:   'Fraunces', Georgia, 'Times New Roman', serif;
+    /* Stacked shadow: soft modern blur + crisp 3px pixel offset.
+       The pixel offset is barely visible but reads as "toy hint"
+       and ties the admin chrome to the landing aesthetic. */
+    --shadow-card:       0 8px 24px rgba(0,0,0,0.30),
+                         3px 3px 0 var(--shadow-px);
+    --shadow-card-hover: 0 14px 32px rgba(0,0,0,0.40),
+                         5px 5px 0 var(--shadow-px);
+    --shadow-inset:      inset 0 1px 0 rgba(255,255,255,0.04);
+    --shadow-glow:       0 0 60px rgba(129,140,248,0.18);
+
+    /* Legacy alias — anything that still references --accent-bright
+       maps to the new indigo primary. */
+    --accent-bright: var(--accent);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -47,10 +60,10 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 html[lang="ar"] body { font-family: var(--sans-ar); }
-::selection { background: rgba(56,189,248,0.30); color: white; }
+::selection { background: rgba(129,140,248,0.35); color: white; }
 
 a { color: var(--accent); text-decoration: none; transition: color .15s; }
-a:hover { color: #7dd3fc; }
+a:hover { color: var(--accent-hi); }
 
 .mono { font-family: var(--mono); }
 .ltr-force { direction: ltr; unicode-bidi: isolate; }
@@ -65,11 +78,24 @@ a:hover { color: #7dd3fc; }
     transition: transform .15s, filter .15s, background .15s, border-color .15s;
 }
 .btn.primary {
-    background: linear-gradient(135deg, var(--accent), var(--accent-2));
-    color: #0a0e1a;
-    box-shadow: 0 6px 24px rgba(56,189,248,0.22);
+    background: var(--accent);
+    color: var(--bg);
+    border-color: rgba(4,7,16,0.55);
+    box-shadow: 3px 3px 0 var(--shadow-px),
+                0 6px 20px rgba(129,140,248,0.25);
 }
-.btn.primary:hover { transform: translateY(-1px); filter: brightness(1.08); color: #0a0e1a; }
+.btn.primary:hover {
+    background: var(--accent-hi);
+    color: var(--bg);
+    transform: translateY(-1px);
+    box-shadow: 5px 5px 0 var(--shadow-px),
+                0 10px 28px rgba(129,140,248,0.32);
+}
+.btn.primary:active {
+    transform: translateY(1px);
+    box-shadow: 1px 1px 0 var(--shadow-px),
+                0 3px 10px rgba(129,140,248,0.18);
+}
 .btn.ghost { background: rgba(255,255,255,0.02); color: var(--text); border-color: var(--border-2); }
 .btn.ghost:hover { background: rgba(255,255,255,0.05); border-color: var(--muted); }
 .btn.secondary { background: var(--surface); color: var(--text); border-color: var(--border-2); }
@@ -91,10 +117,10 @@ html[dir="rtl"] .btn svg { transform: scaleX(-1); }
 .label-chip {
     display: inline-flex; align-items: center; gap: 6px;
     padding: 5px 12px;
-    background: rgba(129,140,248,0.08);
-    border: 1px solid rgba(129,140,248,0.25);
+    background: rgba(129,140,248,0.10);
+    border: 1px solid rgba(129,140,248,0.28);
     border-radius: 999px;
-    font-size: 11px; color: #a5b4fc;
+    font-size: 11px; color: var(--accent-hi);
     letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700;
     font-family: var(--mono);
 }
@@ -113,7 +139,7 @@ input[type=date], input[type=search], input[type=tel], select, textarea {
 }
 input:focus, select:focus, textarea:focus {
     outline: none; border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(56,189,248,0.15);
+    box-shadow: 0 0 0 3px rgba(129,140,248,0.18);
 }
 textarea { min-height: 120px; resize: vertical; }
 label {
@@ -137,10 +163,10 @@ html[lang="ar"] label { font-family: var(--sans-ar); letter-spacing: 0; text-tra
 
 /* === Alerts === */
 .alert { padding: 12px 16px; border-radius: 10px; font-size: 14px; }
-.alert.ok    { background: rgba(74,222,128,0.10); border: 1px solid rgba(74,222,128,0.30); color: #86efac; }
-.alert.err   { background: rgba(248,113,113,0.10); border: 1px solid rgba(248,113,113,0.30); color: #fca5a5; }
-.alert.info  { background: rgba(56,189,248,0.10); border: 1px solid rgba(56,189,248,0.30); color: #7dd3fc; }
-.alert.warn  { background: rgba(245,158,11,0.10); border: 1px solid rgba(245,158,11,0.30); color: #fcd34d; }
+.alert.ok    { background: rgba(52,211,153,0.10);  border: 1px solid rgba(52,211,153,0.30);  color: #6ee7b7; }
+.alert.err   { background: rgba(251,113,133,0.10); border: 1px solid rgba(251,113,133,0.30); color: #fda4af; }
+.alert.info  { background: rgba(129,140,248,0.10); border: 1px solid rgba(129,140,248,0.30); color: var(--accent-hi); }
+.alert.warn  { background: rgba(245,158,11,0.10);  border: 1px solid rgba(245,158,11,0.30);  color: #fcd34d; }
 
 /* === Status pills === */
 .status {
@@ -149,9 +175,9 @@ html[lang="ar"] label { font-family: var(--sans-ar); letter-spacing: 0; text-tra
     letter-spacing: 0.06em; font-family: var(--mono);
 }
 .status.draft { background: rgba(148,163,184,0.12); color: var(--muted); }
-.status.sent  { background: rgba(56,189,248,0.12);  color: var(--accent); }
-.status.paid  { background: rgba(74,222,128,0.12);  color: var(--accent-3); }
-.status.void  { background: rgba(248,113,113,0.12); color: var(--danger); }
+.status.sent  { background: rgba(129,140,248,0.14); color: var(--accent); }
+.status.paid  { background: rgba(52,211,153,0.14);  color: var(--accent-3); }
+.status.void  { background: rgba(251,113,133,0.14); color: var(--danger); }
 
 /* === Brand mark sizing tweak for nav contexts === */
 .brand-mark { line-height: 1; }

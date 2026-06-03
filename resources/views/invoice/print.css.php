@@ -17,11 +17,11 @@ body {
 /* Screen-only: dark gradient backdrop, matching admin shell. */
 body.invoice-screen {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    color: var(--text, #e2e8f0);
+    color: var(--text, #f1f3f8);
     background:
-        radial-gradient(ellipse 1000px 500px at 20% -10%, rgba(56,189,248,0.10), transparent 50%),
-        radial-gradient(ellipse 900px 500px at 80% -10%,  rgba(129,140,248,0.08), transparent 55%),
-        var(--bg, #0a0e1a);
+        radial-gradient(ellipse 1000px 500px at 20% -10%, rgba(129,140,248,0.12), transparent 55%),
+        radial-gradient(ellipse 900px  500px at 80% -10%, rgba(251,191,119,0.06), transparent 60%),
+        var(--bg, #0a0e1d);
     min-height: 100vh;
     padding-bottom: 48px;
     -webkit-font-smoothing: antialiased;
@@ -30,29 +30,29 @@ body.invoice-screen {
 /* === Toolbar (screen only) === */
 .toolbar {
     position: sticky; top: 0; z-index: 50;
-    background: rgba(10,14,26,0.85);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border-bottom: 1px solid var(--border, #1f2a44);
+    background: rgba(10,14,29,0.78);
+    backdrop-filter: saturate(180%) blur(18px);
+    -webkit-backdrop-filter: saturate(180%) blur(18px);
+    border-bottom: 1px solid var(--hairline, rgba(255,255,255,0.07));
     padding: 12px 24px;
     display: flex; gap: 8px; justify-content: flex-end; align-items: center;
 }
-.toolbar .muted { margin-right: auto; font-size: 13px; color: var(--muted, #94a3b8); }
+.toolbar .muted { margin-right: auto; font-size: 13px; color: var(--muted, #7d869f); }
 
 /* === Share box (screen only) === */
 .share-box {
     display: flex; gap: 12px; align-items: center;
     padding: 10px 14px;
-    background: rgba(56,189,248,0.08);
-    border: 1px solid rgba(56,189,248,0.30);
+    background: rgba(129,140,248,0.10);
+    border: 1px solid rgba(129,140,248,0.30);
     border-radius: 8px;
-    font-size: 13px; color: var(--text, #e2e8f0);
+    font-size: 13px; color: var(--text, #f1f3f8);
 }
-.share-box strong { color: var(--accent, #38bdf8); }
+.share-box strong { color: var(--accent, #818cf8); }
 .share-box input {
     flex: 1; border: 0; background: transparent;
     font-family: 'JetBrains Mono', Menlo, monospace;
-    font-size: 12px; outline: none; color: var(--text, #e2e8f0);
+    font-size: 12px; outline: none; color: var(--text, #f1f3f8);
     padding: 0;
 }
 

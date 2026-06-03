@@ -944,3 +944,171 @@ html[lang="ar"] .footer-bottom .admin { font-family: var(--sans-ar); letter-spac
     .reveal { opacity: 1; transform: none; }
     .hero-art { animation: none; }
 }
+
+/* ============================================================
+   Portfolio page (/portfolio) — reuses the landing chrome
+   (nav, footer, cta-banner, .chip) and adds its own hero +
+   grid + card primitives.
+   ============================================================ */
+
+.portfolio-hero {
+    padding: 56px 24px 40px;
+    text-align: center;
+    max-width: 880px;
+    margin: 0 auto;
+}
+.portfolio-hero .label-chip { margin-bottom: 18px; }
+.portfolio-hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(40px, 6.4vw, 68px);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    margin-bottom: 18px;
+    color: var(--r-text);
+}
+html[lang="ar"] .portfolio-hero h1 { font-family: var(--sans-ar); letter-spacing: 0; line-height: 1.2; }
+.portfolio-hero .sub {
+    font-family: var(--sans);
+    color: var(--r-text-dim);
+    font-size: clamp(16px, 1.5vw, 19px);
+    line-height: 1.55;
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.portfolio-section { padding: 32px 24px 72px; max-width: 1180px; margin: 0 auto; }
+.portfolio-grid {
+    display: grid;
+    /* auto-fill (not auto-fit) so a lone last item on a 3+3+1 row
+       keeps its sibling width instead of stretching full-bleed. */
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 18px;
+}
+@media (max-width: 480px) {
+    .portfolio-grid { grid-template-columns: 1fr; }
+}
+
+/* Card shares the same surface/shadow language as .svc-card etc. */
+.portfolio-card {
+    background: var(--r-surface);
+    border: 1px solid var(--r-hairline-2);
+    border-radius: var(--r-radius-lg);
+    box-shadow: var(--r-elev);
+    padding: 28px 28px 26px;
+    display: flex; flex-direction: column;
+    transition: transform .2s cubic-bezier(.34,1.4,.64,1),
+                box-shadow .2s,
+                background .2s,
+                border-color .2s;
+}
+.portfolio-card:hover {
+    background: var(--r-surface-2);
+    border-color: rgba(129,140,248,0.30);
+    transform: translateY(-3px);
+    box-shadow: var(--r-elev-hover);
+}
+
+.portfolio-meta {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 14px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--r-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+html[lang="ar"] .portfolio-meta { font-family: var(--sans-ar); letter-spacing: 0; text-transform: none; font-size: 13px; }
+
+.portfolio-period {
+    color: var(--r-accent-hi);
+    font-weight: 700;
+}
+.portfolio-role { color: var(--r-muted); }
+.portfolio-role::before {
+    content: '·';
+    margin-inline-end: 12px;
+    opacity: 0.6;
+}
+
+.portfolio-card h3 {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    margin-bottom: 14px;
+    color: var(--r-text);
+}
+html[lang="ar"] .portfolio-card h3 { font-family: var(--sans-ar); letter-spacing: 0; line-height: 1.3; }
+
+.portfolio-card > p {
+    font-family: var(--sans);
+    color: var(--r-text-dim);
+    font-size: 15.5px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    flex: 1;
+}
+
+.portfolio-stack {
+    border-top: 1px solid var(--r-hairline);
+    padding-top: 16px;
+    display: flex; flex-direction: column; gap: 10px;
+}
+.portfolio-stack-l {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--r-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+}
+html[lang="ar"] .portfolio-stack-l { font-family: var(--sans-ar); letter-spacing: 0; text-transform: none; font-size: 13px; }
+.portfolio-stack .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+/* "View on GitHub →" footer link inside each card. */
+.portfolio-link {
+    align-self: flex-start;
+    margin-top: 18px;
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: var(--sans);
+    font-size: 13px; font-weight: 600;
+    color: var(--r-accent-hi);
+    padding: 4px 0;
+    transition: color .15s, gap .15s;
+}
+.portfolio-link svg { width: 14px; height: 14px; opacity: 0.85; }
+.portfolio-link:hover { color: var(--r-accent); gap: 9px; }
+
+/* Research & publications strip — three external pill links. */
+.research-strip {
+    padding: 16px 24px 64px;
+    max-width: 1180px;
+    margin: 0 auto;
+}
+.research-strip .section-head { margin-bottom: 28px; }
+.research-links {
+    display: flex; gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.research-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 11px 18px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--r-hairline-2);
+    border-radius: 999px;
+    color: var(--r-text-dim);
+    font-family: var(--sans);
+    font-size: 14px; font-weight: 500;
+    transition: color .15s, border-color .15s, background .15s, transform .15s;
+}
+.research-link svg { width: 14px; height: 14px; opacity: 0.7; }
+.research-link:hover {
+    color: var(--r-accent);
+    border-color: rgba(129,140,248,0.40);
+    background: rgba(129,140,248,0.06);
+    transform: translateY(-1px);
+}
+

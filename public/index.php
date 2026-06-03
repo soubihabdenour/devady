@@ -8,6 +8,7 @@ use App\Controllers\DashboardController;
 use App\Controllers\InvoiceController;
 use App\Controllers\LandingController;
 use App\Controllers\LeadController;
+use App\Controllers\PortfolioController;
 use App\Controllers\SettingsController;
 use App\Http\Request;
 use App\Http\Router;
@@ -35,9 +36,10 @@ $kernel->boot();
 $router = new Router();
 
 // --- Public ---------------------------------------------------------------
-$router->get ('/',             [LandingController::class, 'index']);
-$router->post('/contact',      [ContactController::class, 'submit']);
-$router->get ('/i/{token}',    [InvoiceController::class, 'publicShow']);
+$router->get ('/',             [LandingController::class,   'index']);
+$router->get ('/portfolio',    [PortfolioController::class, 'index']);
+$router->post('/contact',      [ContactController::class,   'submit']);
+$router->get ('/i/{token}',    [InvoiceController::class,   'publicShow']);
 
 // --- Auth -----------------------------------------------------------------
 $router->get ('/login',        [AuthController::class, 'loginForm']);

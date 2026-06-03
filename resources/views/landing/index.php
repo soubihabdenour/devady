@@ -94,6 +94,7 @@ $icon = function(string $n): string {
     <a href="<?= e(I18n::switchUrl($lang)) ?>#top" style="text-decoration:none;"><?= Brand::logo($brand) ?></a>
     <div class="nav-links">
         <a href="#services"><?= e(t('nav_services')) ?></a>
+        <a href="/portfolio"><?= e(t('nav_portfolio')) ?></a>
         <a href="#stack"><?= e(t('nav_stack')) ?></a>
         <a href="#process"><?= e(t('nav_process')) ?></a>
         <a href="#engagements"><?= e(t('nav_engagements')) ?></a>

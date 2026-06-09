@@ -291,6 +291,7 @@ $icon = function(string $n): string {
         <?php endif; ?>
 
         <form method="post" action="/contact?lang=<?= e($lang) ?>" autocomplete="on">
+            <?= csrf_field() ?>
             <div class="hp" aria-hidden="true">
                 <label><?= e(t('form_hp_label')) ?></label>
                 <input type="text" name="website" tabindex="-1" autocomplete="off">

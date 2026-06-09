@@ -15,6 +15,7 @@ ob_start();
 
 <div class="card">
     <form method="post" action="<?= e($action) ?>">
+        <?= csrf_field() ?>
         <label><?= e(t('cl_form_company')) ?> *</label>
         <input type="text" name="name" required value="<?= e($client['name'] ?? '') ?>">
 
@@ -68,7 +69,7 @@ ob_start();
         </div>
     </form>
     <?php if ($client && !empty($client['id'])): ?>
-        <form id="delete-form" method="post" action="/admin/clients/<?= (int)$client['id'] ?>/delete" style="display:none;"></form>
+        <form id="delete-form" method="post" action="/admin/clients/<?= (int)$client['id'] ?>/delete" style="display:none;"><?= csrf_field() ?></form>
     <?php endif; ?>
 </div>
 <?php

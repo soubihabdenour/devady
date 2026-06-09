@@ -30,10 +30,29 @@ final class Kernel
 
     public function boot(): void
     {
+        Config::load($this->base . '/.env');
+
+        // Hide error details from users; rely on the server log instead.
+        ini_set('display_errors', '0');
+        ini_set('log_errors', '1');
+        error_reporting(E_ALL);
+
         if (session_status() === PHP_SESSION_NONE) {
+            $https = ($_SERVER['HTTPS'] ?? '') === 'on'
+                || ($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '') === 'https';
+            session_name('devady_sess');
+            session_set_cookie_params([
+                'lifetime' => 0,
+                'path'     => '/',
+                'domain'   => '',
+                'secure'   => $https,
+                'httponly' => true,
+                'samesite' => 'Lax',
+            ]);
+            ini_set('session.use_strict_mode', '1');
+            ini_set('session.use_only_cookies', '1');
             session_start();
         }
-        Config::load($this->base . '/.env');
         I18n::boot();
         $this->migrate();
     }
@@ -46,7 +65,33 @@ final class Kernel
 
     public function handle(Request $request, Router $router): Response
     {
-        return $router->dispatch($request, $this);
+        if ($request->method === 'POST' && !$this->auth()->checkCsrf($request->input('_csrf'))) {
+            return new Response('CSRF token missing or invalid.', 419, [
+                'Content-Type' => 'text/plain; charset=utf-8',
+            ]);
+        }
+
+        $response = $router->dispatch($request, $this);
+        return $this->applySecurityHeaders($response, $request);
+    }
+
+    private function applySecurityHeaders(Response $response, Request $request): Response
+    {
+        $defaults = [
+            'X-Content-Type-Options' => 'nosniff',
+            'X-Frame-Options'        => 'SAMEORIGIN',
+            'Referrer-Policy'        => 'strict-origin-when-cross-origin',
+            'Permissions-Policy'     => 'geolocation=(), microphone=(), camera=()',
+        ];
+        foreach ($defaults as $name => $value) {
+            $response->headers[$name] ??= $value;
+        }
+        $https = ($request->server['HTTPS'] ?? '') === 'on'
+            || ($request->server['HTTP_X_FORWARDED_PROTO'] ?? '') === 'https';
+        if ($https) {
+            $response->headers['Strict-Transport-Security'] ??= 'max-age=31536000; includeSubDomains';
+        }
+        return $response;
     }
 
     public function runMiddleware(string $name, Request $request): ?Response

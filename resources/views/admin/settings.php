@@ -22,6 +22,7 @@ ob_start();
 <?php if (!empty($saved) && empty($error)): ?><div class="alert ok" style="margin-bottom: 16px;"><?= e(t('set_saved')) ?></div><?php endif; ?>
 
 <form method="post" enctype="multipart/form-data" action="/admin/settings" id="settings-form">
+    <?= csrf_field() ?>
     <div class="card">
         <h2><?= e(t('set_issuer_h')) ?></h2>
         <div class="row">

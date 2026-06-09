@@ -37,19 +37,23 @@ $shareToken = $invoice['public_token'] ?? null;
     <a href="/admin" class="btn secondary">&larr; Invoices</a>
     <?php if (!empty($invoice['signed_at'])): ?>
         <form method="post" action="/admin/invoices/<?= (int)$invoice['id'] ?>/unsign" style="display:inline;">
+            <?= csrf_field() ?>
             <button type="submit" class="btn secondary" onclick="return confirm('Remove signature?')">Unsign</button>
         </form>
     <?php else: ?>
         <form method="post" action="/admin/invoices/<?= (int)$invoice['id'] ?>/sign" style="display:inline;">
+            <?= csrf_field() ?>
             <button type="submit" class="btn primary">Sign invoice</button>
         </form>
     <?php endif; ?>
     <?php if ($shareToken): ?>
         <form method="post" action="/admin/invoices/<?= (int)$invoice['id'] ?>/revoke" style="display:inline;">
+            <?= csrf_field() ?>
             <button type="submit" class="btn secondary" onclick="return confirm('Revoke public link?')">Revoke link</button>
         </form>
     <?php else: ?>
         <form method="post" action="/admin/invoices/<?= (int)$invoice['id'] ?>/share" style="display:inline;">
+            <?= csrf_field() ?>
             <button type="submit" class="btn secondary">Public link</button>
         </form>
     <?php endif; ?>

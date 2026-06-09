@@ -27,6 +27,7 @@ $dir   = I18n::dir();
     <p><?= e(t('login_sub')) ?></p>
     <?php if ($error): ?><div class="alert err" style="margin-bottom: 16px;"><?= e($error) ?></div><?php endif; ?>
     <form method="post" action="/login">
+        <?= csrf_field() ?>
         <label><?= e(t('login_password')) ?></label>
         <input type="password" name="password" autofocus required>
         <button type="submit" class="btn primary lg" style="margin-top: 18px; width: 100%; justify-content: center;">

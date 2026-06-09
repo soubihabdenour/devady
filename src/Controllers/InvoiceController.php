@@ -156,7 +156,9 @@ final class InvoiceController extends Controller
         ]);
 
         $options = new Options();
-        $options->set('isRemoteEnabled', true);
+        // Local file:// images only; never let Dompdf fetch arbitrary URLs.
+        $options->set('isRemoteEnabled', false);
+        $options->set('isPhpEnabled', false);
         $options->set('defaultFont', 'DejaVu Sans');
 
         $dompdf = new Dompdf($options);

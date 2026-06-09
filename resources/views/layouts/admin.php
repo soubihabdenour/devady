@@ -55,6 +55,7 @@ $nav = [
         </div>
         <a class="site-link" href="/"><?= e(t('admin_nav_site')) ?></a>
         <form method="post" action="/logout" style="display:inline;">
+            <?= csrf_field() ?>
             <button type="submit" class="logout-link"><?= e(t('admin_nav_logout')) ?></button>
         </form>
     </div>

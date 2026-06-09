@@ -45,7 +45,6 @@ $router->get ('/i/{token}',    [InvoiceController::class,   'publicShow']);
 $router->get ('/login',        [AuthController::class, 'loginForm']);
 $router->post('/login',        [AuthController::class, 'login']);
 $router->post('/logout',       [AuthController::class, 'logout']);
-$router->get ('/logout',       [AuthController::class, 'logout']);
 
 // --- Asset (signature / stamp images) -------------------------------------
 $router->get ('/asset',        [AssetController::class, 'serve'], ['auth']);

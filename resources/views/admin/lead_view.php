@@ -44,12 +44,14 @@ ob_start();
             <span class="muted"><?= e(t('leads_already_conv')) ?></span>
         <?php else: ?>
             <form method="post" action="/admin/leads/<?= (int)$lead['id'] ?>/convert" style="display:inline;">
+                <?= csrf_field() ?>
                 <button type="submit" class="btn primary"><?= e(t('leads_convert')) ?></button>
             </form>
         <?php endif; ?>
         <div style="flex: 1;"></div>
         <form method="post" action="/admin/leads/<?= (int)$lead['id'] ?>/delete" style="display:inline;"
               onsubmit="return confirm(<?= json_encode(t('leads_delete_confirm')) ?>);">
+            <?= csrf_field() ?>
             <button type="submit" class="btn danger"><?= e(t('leads_delete')) ?></button>
         </form>
     </div>

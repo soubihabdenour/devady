@@ -28,6 +28,7 @@ ob_start();
 <?php endif; ?>
 
 <form method="post" action="<?= e($action) ?>" id="invoice-form">
+    <?= csrf_field() ?>
     <div class="card">
         <div class="row three">
             <div>
@@ -141,7 +142,7 @@ ob_start();
 </form>
 
 <?php if ($invoice): ?>
-    <form id="delete-form" method="post" action="/admin/invoices/<?= (int)$invoice['id'] ?>/delete" style="display:none;"></form>
+    <form id="delete-form" method="post" action="/admin/invoices/<?= (int)$invoice['id'] ?>/delete" style="display:none;"><?= csrf_field() ?></form>
 <?php endif; ?>
 
 <script>

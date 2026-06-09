@@ -21,11 +21,13 @@ final class Settings
         'company_activity_code'  => '',
         'company_activity_label' => '',
         // Banking
-        'company_bank_name'      => '',
-        'company_rib'            => '',
-        'company_iban'           => '',
-        'company_swift'          => '',
-        'company_domiciliation'  => '',
+        'company_bank_name'           => '',
+        'company_rib'                 => '',
+        'company_iban'                => '',
+        'company_swift'               => '',
+        'company_domiciliation'       => '',
+        'company_beneficiary_address' => '',
+        'company_account_currency'    => '',
         // Signature & stamp
         'company_signature_file' => '',
         'company_stamp_file'     => '',

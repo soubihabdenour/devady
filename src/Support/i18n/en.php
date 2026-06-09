@@ -287,6 +287,8 @@ return array (
   'set_swift' => 'SWIFT / BIC',
   'set_domiciliation' => 'Domiciliation reference',
   'set_dom_help' => 'Required by Banque dAlgerie to repatriate foreign-currency payments.',
+  'set_beneficiary_address' => 'Beneficiary address (on file at the bank)',
+  'set_account_currency' => 'Account currency',
   'set_currency' => 'Currency',
   'set_def_tax_rate' => 'Default tax rate (%)',
   'set_prefix' => 'Invoice prefix',

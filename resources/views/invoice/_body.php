@@ -18,7 +18,9 @@ $signedDate   = $isSigned ? date('Y-m-d H:i', $signedAt) : '';
 
 $hasBank = !empty($company['company_bank_name']) || !empty($company['company_rib'])
     || !empty($company['company_iban']) || !empty($company['company_swift'])
-    || !empty($company['company_domiciliation']);
+    || !empty($company['company_domiciliation'])
+    || !empty($company['company_beneficiary_address'])
+    || !empty($company['company_account_currency']);
 ?>
 <div class="page">
     <div class="header-row">
@@ -112,10 +114,12 @@ $hasBank = !empty($company['company_bank_name']) || !empty($company['company_rib
                 <?php if (!empty($company['company_legal_name'] ?: $company['company_name'])): ?>
                     <div class="k">Beneficiary</div><div class="v"><?= e($company['company_legal_name'] ?: $company['company_name']) ?></div>
                 <?php endif; ?>
+                <?php if (!empty($company['company_beneficiary_address'])): ?><div class="k">Beneficiary address</div><div class="v"><?= nl2br(e($company['company_beneficiary_address'])) ?></div><?php endif; ?>
                 <?php if (!empty($company['company_bank_name'])): ?><div class="k">Bank</div><div class="v"><?= e($company['company_bank_name']) ?></div><?php endif; ?>
                 <?php if (!empty($company['company_rib'])): ?><div class="k">RIB</div><div class="v"><?= e($company['company_rib']) ?></div><?php endif; ?>
                 <?php if (!empty($company['company_iban'])): ?><div class="k">IBAN</div><div class="v"><?= e($company['company_iban']) ?></div><?php endif; ?>
                 <?php if (!empty($company['company_swift'])): ?><div class="k">SWIFT / BIC</div><div class="v"><?= e($company['company_swift']) ?></div><?php endif; ?>
+                <?php if (!empty($company['company_account_currency'])): ?><div class="k">Account currency</div><div class="v"><?= e($company['company_account_currency']) ?></div><?php endif; ?>
                 <?php if (!empty($company['company_domiciliation'])): ?><div class="k">Domiciliation ref.</div><div class="v"><?= e($company['company_domiciliation']) ?></div><?php endif; ?>
             </div>
         </div>

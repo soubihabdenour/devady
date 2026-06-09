@@ -287,6 +287,8 @@ return array (
   'set_swift' => 'SWIFT / BIC',
   'set_domiciliation' => 'Reference domiciliation',
   'set_dom_help' => 'Exige par la Banque dAlgerie pour rapatrier les devises.',
+  'set_beneficiary_address' => 'Adresse du beneficiaire (au dossier de la banque)',
+  'set_account_currency' => 'Devise du compte',
   'set_currency' => 'Devise',
   'set_def_tax_rate' => 'Taux TVA par defaut (%)',
   'set_prefix' => 'Prefixe facture',

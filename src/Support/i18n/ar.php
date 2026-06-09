@@ -287,6 +287,8 @@ return array (
   'set_swift' => 'SWIFT / BIC',
   'set_domiciliation' => 'مرجع التوطين',
   'set_dom_help' => 'مطلوب من بنك الجزائر لاسترداد العملات الأجنبية.',
+  'set_beneficiary_address' => 'عنوان المستفيد (المسجَّل لدى البنك)',
+  'set_account_currency' => 'عملة الحساب',
   'set_currency' => 'العملة',
   'set_def_tax_rate' => 'نسبة الضريبة الافتراضية',
   'set_prefix' => 'بادئة الفاتورة',

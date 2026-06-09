@@ -97,6 +97,17 @@ ob_start();
         <label><?= e(t('set_domiciliation')) ?></label>
         <input type="text" name="company_domiciliation" value="<?= e($settings['company_domiciliation']) ?>" dir="ltr">
         <div class="muted" style="font-size: 12px; margin-top: 6px;"><?= e(t('set_dom_help')) ?></div>
+
+        <div class="row">
+            <div>
+                <label><?= e(t('set_beneficiary_address')) ?></label>
+                <textarea name="company_beneficiary_address" rows="2"><?= e($settings['company_beneficiary_address']) ?></textarea>
+            </div>
+            <div>
+                <label><?= e(t('set_account_currency')) ?></label>
+                <input type="text" name="company_account_currency" maxlength="3" value="<?= e($settings['company_account_currency']) ?>" dir="ltr">
+            </div>
+        </div>
     </div>
 
     <div class="card">

@@ -14,6 +14,7 @@ final class SettingsController extends Controller
         'company_activity_code', 'company_activity_label',
         'company_bank_name', 'company_rib', 'company_iban',
         'company_swift', 'company_domiciliation',
+        'company_beneficiary_address', 'company_account_currency',
         'currency', 'default_tax_rate', 'invoice_prefix', 'invoice_padding',
     ];
 

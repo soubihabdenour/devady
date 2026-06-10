@@ -14,10 +14,11 @@ $brand = $kernel->settings()->get('company_name') ?: 'DevAdy';
 $unread = $kernel->leads()->unreadCount();
 
 $nav = [
-    ['key' => 'invoices', 'href' => '/admin',          'label' => t('admin_nav_invoices')],
-    ['key' => 'clients',  'href' => '/admin/clients',  'label' => t('admin_nav_clients')],
-    ['key' => 'leads',    'href' => '/admin/leads',    'label' => t('admin_nav_leads'),    'badge' => $unread],
-    ['key' => 'settings', 'href' => '/admin/settings', 'label' => t('admin_nav_settings')],
+    ['key' => 'invoices',  'href' => '/admin',           'label' => t('admin_nav_invoices')],
+    ['key' => 'clients',   'href' => '/admin/clients',   'label' => t('admin_nav_clients')],
+    ['key' => 'leads',     'href' => '/admin/leads',     'label' => t('admin_nav_leads'),     'badge' => $unread],
+    ['key' => 'portfolio', 'href' => '/admin/portfolio', 'label' => t('admin_nav_portfolio')],
+    ['key' => 'settings',  'href' => '/admin/settings',  'label' => t('admin_nav_settings')],
 ];
 ?><!doctype html>
 <html lang="<?= e(I18n::htmlLang()) ?>" dir="<?= e($dir) ?>">

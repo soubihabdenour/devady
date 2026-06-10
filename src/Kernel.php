@@ -12,6 +12,7 @@ use App\Settings\Settings;
 use App\Stores\ClientStore;
 use App\Stores\InvoiceStore;
 use App\Stores\LeadStore;
+use App\Stores\PortfolioStore;
 use App\Support\Brand;
 use App\Support\Config;
 use App\Support\I18n;
@@ -153,6 +154,11 @@ final class Kernel
     public function leads(): LeadStore
     {
         return $this->instances[LeadStore::class] ??= new LeadStore($this->db()->pdo());
+    }
+
+    public function portfolio(): PortfolioStore
+    {
+        return $this->instances[PortfolioStore::class] ??= new PortfolioStore($this->db()->pdo());
     }
 
     public function view(): View

@@ -77,6 +77,14 @@ $router->get ('/admin/leads/{id}',               [LeadController::class, 'show']
 $router->post('/admin/leads/{id}/convert',       [LeadController::class, 'convert'], ['auth']);
 $router->post('/admin/leads/{id}/delete',        [LeadController::class, 'delete'],  ['auth']);
 
+// --- Admin: portfolio -----------------------------------------------------
+$router->get ('/admin/portfolio',                 [PortfolioController::class, 'adminIndex'], ['auth']);
+$router->get ('/admin/portfolio/new',             [PortfolioController::class, 'showForm'],   ['auth']);
+$router->post('/admin/portfolio/new',             [PortfolioController::class, 'save'],       ['auth']);
+$router->get ('/admin/portfolio/{id}/edit',       [PortfolioController::class, 'showForm'],   ['auth']);
+$router->post('/admin/portfolio/{id}/edit',       [PortfolioController::class, 'save'],       ['auth']);
+$router->post('/admin/portfolio/{id}/delete',     [PortfolioController::class, 'delete'],     ['auth']);
+
 // --- Admin: settings ------------------------------------------------------
 $router->get ('/admin/settings', [SettingsController::class, 'show'],   ['auth']);
 $router->post('/admin/settings', [SettingsController::class, 'update'], ['auth']);
